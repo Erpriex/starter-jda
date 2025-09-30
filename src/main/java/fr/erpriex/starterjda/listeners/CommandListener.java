@@ -2,6 +2,7 @@ package fr.erpriex.starterjda.listeners;
 
 import fr.erpriex.starterjda.StarterJDA;
 import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
 
@@ -17,11 +18,14 @@ public class CommandListener implements EventListener {
     @Override
     public void onEvent(GenericEvent event) {
         if(event instanceof MessageReceivedEvent){
-            onCommand((MessageReceivedEvent) event);
+            onTextualCommand((MessageReceivedEvent) event);
+        }
+        if(event instanceof SlashCommandInteractionEvent) {
+            onSlashCommand((SlashCommandInteractionEvent) event);
         }
     }
 
-    public void onCommand(MessageReceivedEvent event){
+    public void onTextualCommand(MessageReceivedEvent event){
         if(event.getAuthor().equals(event.getJDA().getSelfUser())) {
             return;
         }
@@ -33,5 +37,9 @@ public class CommandListener implements EventListener {
 
             }
         }
+    }
+
+    public void onSlashCommand(SlashCommandInteractionEvent event) {
+        main.getCommandMap().handleSlashCommand(event);
     }
 }

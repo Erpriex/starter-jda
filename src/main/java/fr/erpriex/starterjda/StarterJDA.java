@@ -3,6 +3,8 @@ package fr.erpriex.starterjda;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import fr.erpriex.starterjda.commands.CommandStop;
+import fr.erpriex.starterjda.commands.CommandTest;
 import fr.erpriex.starterjda.commands.construct.CommandMap;
 import fr.erpriex.starterjda.listeners.CommandListener;
 import fr.erpriex.starterjda.listeners.ReadyListener;
@@ -29,6 +31,8 @@ public class StarterJDA implements Runnable {
 
         commandMap = new CommandMap(this, commandPrefix);
 
+        commandMap.registerCommand(new CommandStop(this));
+
         jda = JDABuilder.createDefault(token)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .addEventListeners(new CommandListener(this))
@@ -36,13 +40,15 @@ public class StarterJDA implements Runnable {
                 .build();
 
         jda.awaitReady();
+
+        commandMap.registerSlashCommands();
     }
 
     public static void main(String[] args) {
-        try{
+        try {
             StarterJDA starterJDA = new StarterJDA();
             new Thread(starterJDA, "bot").start();
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

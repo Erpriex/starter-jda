@@ -11,7 +11,7 @@ public class CommandStop {
         this.main = main;
     }
 
-    @Command( name = "stop", description = "Arrêter le bot", type = Command.ExecutorType.CONSOLE)
+    @Command( name = "stop", description = "Arrêter le bot", type = Command.ExecutorType.CONSOLE, isSlashCommand = true)
     public void command(){
         main.stopBot();
     }
