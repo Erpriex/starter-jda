@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import fr.erpriex.starterjda.commands.CommandStop;
-import fr.erpriex.starterjda.commands.CommandTest;
 import fr.erpriex.starterjda.commands.construct.CommandMap;
 import fr.erpriex.starterjda.listeners.CommandListener;
 import fr.erpriex.starterjda.listeners.ReadyListener;
