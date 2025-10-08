@@ -27,5 +27,5 @@ mvn clean package
 
 ### Running
 ```bash
-java -jar target/StarterJDA-1.0-SNAPSHOT.jar
+java -jar target/StarterJDA-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
